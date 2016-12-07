@@ -43,3 +43,4 @@ public class Scrabble_racks {
 		System.out.println("\n" + CheckExist(rack, word));
 	}
 }
+
