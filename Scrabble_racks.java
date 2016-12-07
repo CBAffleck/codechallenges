@@ -2,13 +2,15 @@ import java.util.*;
 
 public class Scrabble_racks {
 
-	
-
 	public static boolean CheckExist(List rack, List word) {
+		char b = '?';
 		for (int i = 0; i < word.size(); i++) {
-			if (rack.contains(word.get(i))) {
+			if (rack.contains(word.get(i)) || rack.contains(b)) {
 				for (int j = 0; j < rack.size(); j++) {
 					if (word.get(i) == rack.get(j)) {
+						rack.remove(j);
+						break;
+					} else if (rack.get(j).equals(b)) {
 						rack.remove(j);
 						break;
 					}
@@ -38,6 +40,6 @@ public class Scrabble_racks {
 			word.add(c);
 		}
 
-		System.out.println(CheckExist(rack, word));
+		System.out.println("\n" + CheckExist(rack, word));
 	}
 }
