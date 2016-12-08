@@ -1,17 +1,20 @@
 import java.util.*;
+import java.lang.*;
+import java.io.*;
 
 public class Scrabble_racks {
 
 	public static boolean CheckExist(List rack, List word) {
+		List rack_copy = new ArrayList(rack);
 		char b = '?';
 		for (int i = 0; i < word.size(); i++) {
-			if (rack.contains(word.get(i)) || rack.contains(b)) {
-				for (int j = 0; j < rack.size(); j++) {
-					if (word.get(i) == rack.get(j)) {
-						rack.remove(j);
+			if (rack_copy.contains(word.get(i)) || rack_copy.contains(b)) {
+				for (int j = 0; j < rack_copy.size(); j++) {
+					if (word.get(i) == rack_copy.get(j)) {
+						rack_copy.remove(j);
 						break;
-					} else if (rack.get(j).equals(b)) {
-						rack.remove(j);
+					} else if (rack_copy.get(j).equals(b)) {
+						rack_copy.remove(j);
 						break;
 					}
 				}
@@ -20,6 +23,30 @@ public class Scrabble_racks {
 			}
 		}
 		return true;
+	}
+
+	public static String Longest(List rack) {
+		List<String> wordlist = new ArrayList<String>();
+		try {
+			Scanner input = new Scanner(new File("/Users/CampbellAffleck/desktop/programming/projects/codechallenges/enable1.txt"));
+			while (input.hasNextLine()) {
+				wordlist.add(input.next());
+			}
+			input.close();
+		} catch (FileNotFoundException ex) {
+			return "Input file does not exist at this location.";
+		}
+		String temp = "temp";
+		for (int i = 0; i < wordlist.size(); i++) {
+			List current = new ArrayList();
+			for (char c : wordlist.get(i).toCharArray()) {
+				current.add(c);
+			}
+			if (CheckExist(rack, current) && wordlist.get(i).length() > temp.length()) {
+				temp = wordlist.get(i);
+			}
+		}
+		return temp;
 	}
 
 	public static void main(String args[]) {
@@ -40,7 +67,8 @@ public class Scrabble_racks {
 			word.add(c);
 		}
 
-		System.out.println("\n" + CheckExist(rack, word));
+		System.out.println("\n" + "Exists: " + CheckExist(rack, word));
+		System.out.println("\n" + "Longest: " + Longest(rack));
 	}
 }
 
