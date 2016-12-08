@@ -2,6 +2,14 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
+/*
+	Scrabble_racks checks if a word input by the user exists in a rack of letters also input by the user.
+	The second function, Longest, outputs the the longest word from words.txt that can be created using the
+	letters and blank tiles in the rack.
+
+	-Campbell
+*/
+
 public class Scrabble_racks {
 
 	public static boolean CheckExist(List rack, List word) {
