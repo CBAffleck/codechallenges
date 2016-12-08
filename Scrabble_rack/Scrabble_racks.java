@@ -28,7 +28,7 @@ public class Scrabble_racks {
 	public static String Longest(List rack) {
 		List<String> wordlist = new ArrayList<String>();
 		try {
-			Scanner input = new Scanner(new File("/Users/CampbellAffleck/desktop/programming/projects/codechallenges/enable1.txt"));
+			Scanner input = new Scanner(new File("words.txt"));
 			while (input.hasNextLine()) {
 				wordlist.add(input.next());
 			}
