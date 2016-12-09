@@ -61,8 +61,7 @@ public class Scrabble_racks {
 	public static String highest(List rack) {
 		List rack_copy2 = new ArrayList(rack);
 		String alphabet = "abcdefghijklmnopqrstuvwxyz";
-		int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 4, 8, 10};
-
+		int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 		List<String> wordlist = new ArrayList<String>();
 		try {
 			Scanner input = new Scanner(new File("words.txt"));
