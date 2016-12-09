@@ -4,9 +4,10 @@ import java.io.*;
 
 /*
 	Scrabble_racks checks if a word input by the user exists in a rack of letters also input by the user.
-	The second function, Longest, outputs the the longest word from words.txt that can be created using the
-	letters and blank tiles in the rack. The Highest method returns the word that can be made with the tiles
-	in the rack that will yield the highest score.
+	-The second function, longest, outputs the the longest word from words.txt that can be created using the
+	letters and blank tiles in the rack. 
+	-The highest method returns the word that can be made with the tiles in the rack that will yield the highest score.
+	-The wordScore method returns the score for the tiles you are checking against the rack.
 
 	-Campbell
 */
