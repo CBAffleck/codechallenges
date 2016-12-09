@@ -79,7 +79,7 @@ public class Scrabble_racks {
 			List current = new ArrayList();
 			int current_point = 0;
 			for (char c : wordlist.get(i).toCharArray()) {
-				if (rack.contains(c)) {
+				if (rack_copy2.contains(c)) {
 					for (int j = 0; j<alphabet.length(); j++) {
 						if (c == alphabet.charAt(j)) {
 							current_point += points[j];
