@@ -5,14 +5,15 @@ import java.io.*;
 /*
 	Scrabble_racks checks if a word input by the user exists in a rack of letters also input by the user.
 	The second function, Longest, outputs the the longest word from words.txt that can be created using the
-	letters and blank tiles in the rack.
+	letters and blank tiles in the rack. The Highest method returns the word that can be made with the tiles
+	in the rack that will yield the highest score.
 
 	-Campbell
 */
 
 public class Scrabble_racks {
 
-	public static boolean CheckExist(List rack, List word) {
+	public static boolean checkExist(List rack, List word) {
 		List rack_copy = new ArrayList(rack);
 		char b = '?';
 		for (int i = 0; i < word.size(); i++) {
@@ -33,7 +34,7 @@ public class Scrabble_racks {
 		return true;
 	}
 
-	public static String Longest(List rack) {
+	public static String longest(List rack) {
 		List<String> wordlist = new ArrayList<String>();
 		try {
 			Scanner input = new Scanner(new File("words.txt"));
@@ -50,8 +51,46 @@ public class Scrabble_racks {
 			for (char c : wordlist.get(i).toCharArray()) {
 				current.add(c);
 			}
-			if (CheckExist(rack, current) && wordlist.get(i).length() > temp.length()) {
+			if (checkExist(rack, current) && wordlist.get(i).length() > temp.length()) {
 				temp = wordlist.get(i);
+			}
+		}
+		return temp;
+	}
+
+	public static String highest(List rack) {
+		List rack_copy2 = new ArrayList(rack);
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 4, 8, 10};
+
+		List<String> wordlist = new ArrayList<String>();
+		try {
+			Scanner input = new Scanner(new File("words.txt"));
+			while (input.hasNextLine()) {
+				wordlist.add(input.next());
+			}
+			input.close();
+		} catch (FileNotFoundException ex) {
+			return "Input file does not exist at this location.";
+		}
+		String temp = "temp";
+		int point_total = 0;
+		for (int i = 0; i < wordlist.size(); i++) {
+			List current = new ArrayList();
+			int current_point = 0;
+			for (char c : wordlist.get(i).toCharArray()) {
+				if (rack.contains(c)) {
+					for (int j = 0; j<alphabet.length(); j++) {
+						if (c == alphabet.charAt(j)) {
+							current_point += points[j];
+						}
+					}
+				}
+				current.add(c);
+			}
+			if (checkExist(rack, current) && current_point > point_total) {
+				temp = wordlist.get(i);
+				point_total = current_point;
 			}
 		}
 		return temp;
@@ -75,8 +114,9 @@ public class Scrabble_racks {
 			word.add(c);
 		}
 
-		System.out.println("\n" + "Exists: " + CheckExist(rack, word));
-		System.out.println("\n" + "Longest: " + Longest(rack));
+		System.out.println("\n" + "Exists: " + checkExist(rack, word));
+		System.out.println("\n" + "Longest: " + longest(rack));
+		System.out.println("\n" + "Highest: " + highest(rack));
 	}
 }
 
