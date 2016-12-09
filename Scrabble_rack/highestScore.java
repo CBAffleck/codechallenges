@@ -3,10 +3,8 @@ import java.lang.*;
 import java.io.*;
 
 /*
-	Scrabble_racks checks if a word input by the user exists in a rack of letters also input by the user.
-	The second function, Longest, outputs the the longest word from words.txt that can be created using the
-	letters and blank tiles in the rack. The Highest method returns the word that can be made with the tiles
-	in the rack that will yield the highest score.
+	highestScore finds the word in the wordlist that will give you the highest score for the tiles you have
+	on the rack. Doesn't currenty include functionality for blank tiles.
 
 	-Campbell
 */
