@@ -95,6 +95,23 @@ public class Scrabble_racks {
 		return temp;
 	}
 
+	public static int wordScore(List rack, List word) {
+		String alphabet = "abcdefghijklmnopqrstuvwxyz";
+		int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+		int score = 0;
+		if (checkExist(rack, word)) {
+			for (int i = 0; i<word.size(); i++) {
+				if (word.get(i).equals('?')) {
+					score += 0;
+				} else {
+					char c = (Character) word.get(i);
+					score += points[alphabet.indexOf(c)];
+				}
+			}
+		}
+		return score;
+	}
+
 	public static void main(String args[]) {
 		List rack = new ArrayList();
 		List word = new ArrayList();
@@ -114,6 +131,7 @@ public class Scrabble_racks {
 		}
 
 		System.out.println("\n" + "Exists: " + checkExist(rack, word));
+		System.out.println("Score: " + wordScore(rack, word));
 		System.out.println("\n" + "Longest: " + longest(rack));
 		System.out.println("\n" + "Highest: " + highest(rack));
 	}
