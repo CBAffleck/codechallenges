@@ -1,6 +1,7 @@
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.net.URI;
 
 /*
 	Scrabble_racks checks if a word input by the user exists in a rack of letters also input by the user.
@@ -129,6 +130,20 @@ public class Scrabble_racks {
 		String word_input = in2.next();
 		for (char c : word_input.toCharArray()) {
 			word.add(c);
+		}
+
+		String rickroll = "rickroll";
+		List rickroll_list = new ArrayList();
+		for (char c : rickroll.toCharArray()) {
+			rickroll_list.add(c);
+		}
+		
+		if (checkExist(rack, rickroll_list) && checkExist(rickroll_list, word) && word.size() == rickroll_list.size()) {
+			try {
+				java.awt.Desktop.getDesktop().browse(new URI("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+			} catch (Exception ex) {
+				System.out.println("");
+			}
 		}
 
 		System.out.println("\n" + "Exists: " + checkExist(rack, word));
