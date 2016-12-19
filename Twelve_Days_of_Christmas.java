@@ -10,13 +10,6 @@ public class Twelve_Days_of_Christmas {
 									"Maids a Milking", "Swans a Swimming", "Geese a Laying", "Golden Rings",
 									"Calling Birds", "French Hens", "Turtle Doves", "Partridge in a Pear Tree \n");
 		List<String> nums = asList("twelve ", "eleven ", "ten ", "nine ", "eight ", "seven ", "six ", "five ", "four ", "three ", "two ", "one ");
-		
-		// List<String> input_gifts = asList("");
-		// for (int m = 0; m < 12; m++) {
-		// 	Scanner in1 = new Scanner(System.in);
-		// 	String input = in1.next();
-		// 	input_gifts.add(0, input);
-		// }
 
 		for (int i = 0; i < 12; i++) {
 			String start = "On the " + numbers.get(i) + " day of Christmas \n my true love sent to me:";
