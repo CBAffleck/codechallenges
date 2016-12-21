@@ -6,10 +6,15 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.text.*;
 
+/* 
+	Creates images from Julia sets based off the numbers the user inputs.
+	Number suggestions: (-0.055, .680), (-0.47, -0.656), (-0.221, -0.713)
+*/
+
 public class Julia_Fractals {
 
-	static final double REAL_NUM = -0.221;
-	static final double IMAGINARY_NUM = -0.713;
+	static double REAL_NUM;
+	static double IMAGINARY_NUM;
 
 	static class Complex {
 		double re;
@@ -33,9 +38,18 @@ public class Julia_Fractals {
 	}
 
 	public static void main(String[] args) throws IOException {
+
+		System.out.println("Enter a decimal number between -1 and 1: ");
+		Scanner in1 = new Scanner(System.in);
+		REAL_NUM = in1.nextDouble();
+
+		System.out.println("Enter another decimal number between -1 and 1: ");
+		Scanner in2 = new Scanner(System.in);
+		IMAGINARY_NUM = in2.nextDouble();
+
 		long start = System.currentTimeMillis();
-		int WIDTH = 1200;
-		int HEIGHT = 1000;
+		int WIDTH = 1920;
+		int HEIGHT = 1200;
 		int threshold = 2;
 
 		BufferedImage fractal = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -52,14 +66,15 @@ public class Julia_Fractals {
 				}
 
 				int red = i;
-				int green = i;
-				int blue = i;
+				int green = i + 1;
+				int blue = i + 2;
 				int rgb = (red << 16) | (green << 8) | blue;
 				fractal.setRGB(x, y, rgb);
 			}
 		}
 
 		ImageIO.write(fractal, "png", new File("Julia_Fractal.png"));
+
 		long end = System.currentTimeMillis();
 		NumberFormat formatter = new DecimalFormat("#0.00000");
 		System.out.println("Runtime: " + formatter.format((end - start) / 1000d) + " seconds");
