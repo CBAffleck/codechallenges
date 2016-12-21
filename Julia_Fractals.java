@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.URI;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.text.*;
 
 public class Julia_Fractals {
 
@@ -32,6 +33,7 @@ public class Julia_Fractals {
 	}
 
 	public static void main(String[] args) throws IOException {
+		long start = System.currentTimeMillis();
 		int WIDTH = 1200;
 		int HEIGHT = 1000;
 		int threshold = 2;
@@ -45,14 +47,21 @@ public class Julia_Fractals {
 
 				Complex complex_num = new Complex(real_1, imaginary_1);
 				int i;
-				for (i = 0; i < 128 && complex_num.absolute() <= threshold; i++) {
+				for (i = 0; i < 256 && complex_num.absolute() <= threshold; i++) {
 					complex_num.applyFunc();
 				}
-				System.out.println("X: " + x + " Y: " + y + " a: " + real_1 + " b: " + imaginary_1 + " Rslt: " + complex_num.absolute() + " Iterations: " + i);
-				fractal.setRGB(x, y, i);
+
+				int red = i;
+				int green = i;
+				int blue = i;
+				int rgb = (red << 16) | (green << 8) | blue;
+				fractal.setRGB(x, y, rgb);
 			}
 		}
 
 		ImageIO.write(fractal, "png", new File("Julia_Fractal.png"));
+		long end = System.currentTimeMillis();
+		NumberFormat formatter = new DecimalFormat("#0.00000");
+		System.out.println("Runtime: " + formatter.format((end - start) / 1000d) + " seconds");
 	}
 }
