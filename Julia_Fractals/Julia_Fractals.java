@@ -5,6 +5,7 @@ import java.net.URI;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.text.*;
+import java.awt.Color;
 
 /* 
 	Creates images from Julia sets based off the numbers the user inputs.
@@ -65,15 +66,21 @@ public class Julia_Fractals {
 					complex_num.applyFunc();
 				}
 
+				// Black and white designs
 				int red = i;
 				int green = i + 1;
 				int blue = i + 2;
 				int rgb = (red << 16) | (green << 8) | blue;
 				fractal.setRGB(x, y, rgb);
+
+				// Colored designs with base of red/orange
+				// float Hue = (i%256) / 255.0f;
+				// Color color = Color.getHSBColor((float)Hue, 1f, 1f);
+				// fractal.setRGB(x, y, color.getRGB());
 			}
 		}
 
-		ImageIO.write(fractal, "png", new File("Julia_Fractal.png"));
+		ImageIO.write(fractal, "png", new File("Julia_Fractal6.png"));
 
 		long end = System.currentTimeMillis();
 		NumberFormat formatter = new DecimalFormat("#0.00000");
