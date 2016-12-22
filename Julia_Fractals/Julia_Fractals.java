@@ -66,7 +66,7 @@ public class Julia_Fractals {
 					complex_num.applyFunc();
 				}
 
-				// Black and white designs
+				// Black and white designs 
 				int red = i;
 				int green = i + 1;
 				int blue = i + 2;
